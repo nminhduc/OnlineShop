@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Models;
+using Models.Framework;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
@@ -31,13 +32,18 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         // POST: Admin/Category/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Category collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    // TODO: Add insert logic here
+                    // Insert Data
+                    return RedirectToAction("Index");
+                }
 
-                return RedirectToAction("Index");
+                return View(collection);
             }
             catch
             {
@@ -53,6 +59,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         // POST: Admin/Category/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try

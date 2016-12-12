@@ -15,9 +15,11 @@
 
         [StringLength(50)]
         [DisplayName("Tên Danh Mục")]
+        [Required(ErrorMessage ="Bạn chưa nhập tên danh mục")]
         public string Name { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Tiêu đề SEO")]
         public string Alias { get; set; }
 
         public int? ParentID { get; set; }
